@@ -2,8 +2,7 @@ import Link from 'next/link'
 import { Heart, ShoppingBag, UserRound, Search } from 'lucide-react'
 import { Montserrat } from "next/font/google";
 import  Image  from 'next/image';
-import React, { Component } from 'react';
-//import '../styles/index.css'
+import React from 'react';
 const montserrat = Montserrat({
     variable: "--font-montserrat",
     subsets: ["latin"]
