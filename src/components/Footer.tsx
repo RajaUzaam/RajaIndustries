@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
-import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
