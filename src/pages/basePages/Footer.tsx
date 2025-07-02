@@ -19,6 +19,37 @@ const FooterLink = ({ href, children }: { href: string; children: string }) => (
 const Footer = () => {
   return (
     <footer className="w-full bg-black border-t border-gray-800 shadow-sm mt-16">
+
+      {/* Newsletter Sign-Up */}
+      <div className="bg-gray-800 w-full px-6 py-12 text-white text-center">
+        <div className="max-w-4xl mx-auto flex flex-col items-center">
+          <h3 className={`${montserrat.className} font-semibold text-xl mb-2`}>
+            Subscribe to our Newsletter
+          </h3>
+          <p className={`${montserrat.className} text-sm text-gray-400 mb-6`}>
+            Be the first to know about new arrivals, exclusive drops, and special offers.
+          </p>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex flex-col sm:flex-row items-stretch w-full gap-3 max-w-xl"
+          >
+            <input
+              type="email"
+              required
+              placeholder="Enter your email"
+              className={`flex-1 px-4 py-2 rounded-md text-sm bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white ${montserrat.className}`}
+            />
+            <button
+              type="submit"
+              className="px-5 py-2 bg-white text-black rounded-md hover:bg-gray-200 transition text-sm font-medium"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-8 text-white">
         {/* Logo Section */}
         <div>
