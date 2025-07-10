@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 
 const montserrat = Montserrat({
@@ -21,7 +24,7 @@ const Footer = () => {
     <footer className="w-full bg-black border-t border-gray-800 shadow-sm mt-16">
 
       {/* Newsletter Sign-Up */}
-      <div className="bg-gray-800 w-full px-6 py-12 text-white text-center">
+      {/*<div className="bg-gray-800 w-full px-6 py-12 text-white text-center">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           <h3 className={`${montserrat.className} font-semibold text-xl mb-2`}>
             Subscribe to our Newsletter
@@ -37,7 +40,7 @@ const Footer = () => {
               type="email"
               required
               placeholder="Enter your email"
-              className={`flex-1 px-4 py-2 rounded-md text-sm bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white ${montserrat.className}`}
+              className={`flex-1 px-4 py-2 rounded-md text-sm bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black ${montserrat.className}`}
             />
             <button
               type="submit"
@@ -47,7 +50,7 @@ const Footer = () => {
             </button>
           </form>
         </div>
-      </div>
+      </div>*/}
 
 
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-8 text-white">
@@ -77,16 +80,16 @@ const Footer = () => {
             <span className={`${montserrat.className} text-sm text-gray-300`}>Email: business@business.com</span>
             <div className="flex flex-row gap-1 mt-2 text-white">
             <Link href="/" aria-label="Facebook" className='hover:scale-110 transition'>
-              <Image src={"/facebook.svg"} alt='facebook' width={40} height={40}/>
+              {/*<Image src={"/facebook.svg"} alt='facebook' width={40} height={40}/>*/}
+              <Facebook className="w-7 h-7" />
             </Link>
             <Link href="/" aria-label="Instagram" className='hover:scale-110 transition'>
-                <Image src={"/instagram.svg"} alt='instagram' width={40} height={40}/>
+                {/*<Image src={"/instagram.svg"} alt='instagram' width={40} height={40}/>*/}
+              <Instagram className="w-7 h-7" />
             </Link>
             <Link href="/" aria-label="Twitter" className='hover:scale-110 transition'>
-                <Image src={"/twitter.svg"} alt='twitter' width={40} height={40}/>
-            </Link>
-            <Link href="/" aria-label="YouTube" className='hover:scale-110 transition'>
-                <Image src={"/whatsapp.svg"} alt='whatsapp' width={40} height={40}/>
+                {/*<Image src={"/twitter.svg"} alt='twitter' width={40} height={40}/*/}
+              <Twitter className="w-7 h-7" />
             </Link>
           </div>
           </div>

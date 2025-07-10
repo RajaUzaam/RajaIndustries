@@ -8,7 +8,7 @@ const montserrat = Montserrat({
   subsets: ['latin']
 });
 
-const Base = () => {
+export default function Home() {
   return (
     <main className="w-full">
       {/* Hero Section */}
@@ -77,6 +77,4 @@ const Base = () => {
       </section>
     </main>
   );
-};
-
-export default Base;
+}

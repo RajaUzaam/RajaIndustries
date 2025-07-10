@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Heart, ShoppingBag, UserRound, Search, Menu } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
@@ -28,9 +30,9 @@ const NavLink = ({ children, href }: { children: string; href: string }) => {
 
 const SearchBar = () => {
   return (
-    <div className="flex items-center w-[20rem] px-1 py-1 bg-gray-50 hover:bg-gray-100 rounded-[7px] shadow-sm focus-within:ring-2 focus-within:ring-black transition">
-      <button className="mx-1.5 border-gray-300 border-2 rounded-[7px] p-1 hover:cursor-pointer hover:border-gray-800 transition">
-        <Search className="w-[1.25rem] h-[1.25rem]" />
+    <div className="flex items-center w-[1rem] hover:w-[20rem] border-0 rounded-[7px] hover:border-2 border-gray-200 focus-within:w-[20rem] focus-within:ring-2 focus-within:ring-black transition-all duration-300">
+      <button className="border-gray-300 border-0 rounded-[7px] p-1 transition cursor-pointer">
+        <Search className="" />
       </button>
       <input
         type="text"
@@ -54,9 +56,7 @@ const NavIcon = ({
     <Link
       href={href}
       aria-label={ariaLabel}
-      className="inline-block p-1.5 rounded-[7px] 
-        border border-gray-300 bg-gray-100 shadow-sm hover:bg-black
-        hover:text-white focus:bg-black focus:text-white hover:scale-110 transition-all duration-300"
+      className="hover:scale-110 transition-all duration-300"
     >
       {children}
     </Link>
@@ -93,12 +93,12 @@ const Header = () => {
         {/* Always-visible Right Section */}
         <div className="flex items-center gap-3">
           {/* SearchBar (hidden on mobile) */}
-          <div className="hidden md:block">
-            <SearchBar />
-          </div>
 
           {/* Icons (always visible) */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex mr-3">
+              <SearchBar />
+            </div>
             <NavIcon href="/wishlist" ariaLabel="Wishlist">
               <Heart />
             </NavIcon>
