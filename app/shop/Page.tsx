@@ -1,4 +1,7 @@
+'use client';
+
 import { useState } from 'react';
+import Link from 'next/link';
 
 const DUMMY_PRODUCTS = [
   { id: 1, name: 'Nike Air Max 270', price: 150, category: 'Shoes', brand: 'Nike' },
@@ -101,11 +104,11 @@ export default function ShopPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
-              <div key={product.id} className="p-4 border rounded-xl shadow hover:shadow-md">
+              <Link href={`/product/${product.id}`} key={product.id} className="p-4 border rounded-xl shadow hover:shadow-md">
                 <div className="h-40 bg-gray-100 rounded mb-4" />
                 <h3 className="font-medium text-lg">{product.name}</h3>
                 <p className="text-gray-500">${product.price}</p>
-              </div>
+              </Link>
             ))}
           </div>
         )}

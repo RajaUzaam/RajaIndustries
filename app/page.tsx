@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+//import Image from 'next/image';
 import Link from 'next/link';
 import { Montserrat } from 'next/font/google'; // Assuming you exported your Montserrat font
 
@@ -13,13 +13,13 @@ export default function Home() {
     <main className="w-full">
       {/* Hero Section */}
       <section className="w-full h-[80vh] bg-black text-white flex items-center justify-center relative overflow-hidden">
-        <Image
-          src="/hero.jpg"
+        {/*<Image
+          src=""
           alt="Hero Banner"
           fill
           className="object-cover opacity-50"
           priority
-        />
+        />*/}
         <div className="z-10 text-center">
           <h1 className={`text-5xl font-bold mb-4 ${montserrat.className}`}>
             Unleash Your Style
@@ -45,13 +45,14 @@ export default function Home() {
               href={`/shop?category=${cat.toLowerCase()}`}
               className="group relative overflow-hidden rounded-xl shadow hover:scale-105 transition"
             >
-              <Image
-                src={`/${cat.toLowerCase()}.jpg`}
+              {/*<Image
+                src={``}
                 alt={`${cat} Category`}
                 width={400}
                 height={500}
                 className="object-cover w-full h-full"
-              />
+              />*/}
+              <div className='w-[400px] h-[500px] bg-gray-200 rounded-xl' />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-2xl font-semibold">
                 {cat}
               </div>

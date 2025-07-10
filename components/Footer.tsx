@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+//import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 
 const montserrat = Montserrat({
@@ -78,18 +78,21 @@ const Footer = () => {
             <span className={`${montserrat.className} text-sm text-gray-300`}>Pakistan, Punjab, Lahore</span>
             <span className={`${montserrat.className} text-sm text-gray-300`}>Contact us: 00-0000-00</span>
             <span className={`${montserrat.className} text-sm text-gray-300`}>Email: business@business.com</span>
-            <div className="flex flex-row gap-1 mt-2 text-white">
+            <div className="flex flex-row gap-2 mt-2 text-white">
             <Link href="/" aria-label="Facebook" className='hover:scale-110 transition'>
-              {/*<Image src={"/facebook.svg"} alt='facebook' width={40} height={40}/>*/}
-              <Facebook className="w-7 h-7" />
+              <Image src={"/facebook.svg"} className='dark:invert' alt='facebook' width={30} height={30}/>
             </Link>
             <Link href="/" aria-label="Instagram" className='hover:scale-110 transition'>
-                {/*<Image src={"/instagram.svg"} alt='instagram' width={40} height={40}/>*/}
-              <Instagram className="w-7 h-7" />
+                <Image src={"/instagram.svg"} className='dark:invert' alt='facebook' width={30} height={30}/>
+            </Link>
+            <Link href="/" aria-label="Youtube" className='hover:scale-110 transition'>
+                <Image src={"/youtube.svg"} className='dark:invert' alt='youtube' width={30} height={30}/>
+            </Link>
+            <Link href="/" aria-label="TikTok" className='hover:scale-110 transition'>
+                <Image src={"/tiktok.svg"} className='dark:invert' alt='tiktok' width={30} height={30}/>
             </Link>
             <Link href="/" aria-label="Twitter" className='hover:scale-110 transition'>
-                {/*<Image src={"/twitter.svg"} alt='twitter' width={40} height={40}/*/}
-              <Twitter className="w-7 h-7" />
+                <Image src={"/x.svg"} className='dark:invert' alt='facebook' width={25} height={25}/>
             </Link>
           </div>
           </div>

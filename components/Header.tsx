@@ -84,7 +84,7 @@ const Header = () => {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex w-full gap-6 mx-4 text-md">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/">Shop</NavLink>
+          <NavLink href="/shop">Shop</NavLink>
           <NavLink href="/">Men</NavLink>
           <NavLink href="/">Women</NavLink>
           <NavLink href="/">Kids</NavLink>
@@ -99,13 +99,13 @@ const Header = () => {
             <div className="hidden md:flex mr-3">
               <SearchBar />
             </div>
-            <NavIcon href="/wishlist" ariaLabel="Wishlist">
+            <NavIcon href="/" ariaLabel="Wishlist">
               <Heart />
             </NavIcon>
-            <NavIcon href="/cart" ariaLabel="Cart">
+            <NavIcon href="/" ariaLabel="Cart">
               <ShoppingBag />
             </NavIcon>
-            <NavIcon href="/account" ariaLabel="Account">
+            <NavIcon href="/profile" ariaLabel="Account">
               <UserRound />
             </NavIcon>
           </div>
@@ -128,7 +128,7 @@ const Header = () => {
           {/* Navigation Links */}
           <div className="flex flex-col gap-2">
             <NavLink href="/">Home</NavLink>
-            <NavLink href="/">Shop</NavLink>
+            <NavLink href="/shop">Shop</NavLink>
             <NavLink href="/">Men</NavLink>
             <NavLink href="/">Women</NavLink>
             <NavLink href="/">Kids</NavLink>
