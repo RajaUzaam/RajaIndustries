@@ -19,7 +19,7 @@ const DUMMY_PRODUCTS = [
   },
 ];
 
-export default async function ProductPage({ params }: Params) {
+export default function ProductPage({ params }: Params) {
   const id = decodeURIComponent(params.id);
 
   const product = DUMMY_PRODUCTS.find((p) => p.id === id);
@@ -30,6 +30,7 @@ export default async function ProductPage({ params }: Params) {
 
   return (
     <div className="max-w-5xl mx-auto mt-10 px-4">
+      <title>Raja Industries - Product</title>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         <div className="bg-gray-100 rounded-xl h-96 w-full" />
         <div>

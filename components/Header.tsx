@@ -5,13 +5,15 @@ import { Heart, ShoppingBag, UserRound, Search, Menu } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import CartSlidePanel from './CartSlidePanel';
+import WishlistSlidePanel from './WishlistSlidePanel';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
   subsets: ['latin']
 });
 
-const NavLink = ({ children, href }: { children: string; href: string }) => {
+const NavLink = ({ children, href }: { children: string; href: object | string }) => {
   return (
     <Link
       href={href}
@@ -43,30 +45,48 @@ const SearchBar = () => {
   );
 };
 
-const NavIcon = ({
-  href,
-  ariaLabel,
-  children
-}: {
-  href: string;
+type NavIconProps = {
+  isLink: boolean;
+  href?: object | string;
+  onClick?: () => void;
   ariaLabel: string;
   children: React.ReactNode;
-}) => {
+};
+
+const NavIcon = ({
+  isLink = true,
+  href = '/',
+  onClick,
+  ariaLabel,
+  children
+}: NavIconProps) => {
   return (
+    isLink && (
     <Link
       href={href}
       aria-label={ariaLabel}
       className="hover:scale-110 transition-all duration-300"
     >
       {children}
-    </Link>
+    </Link>) || (
+      <button
+      onClick={onClick}
+      aria-label={ariaLabel}
+      className="hover:scale-110 transition-all duration-300"
+      >
+        {children}
+      </button>
+    )
   );
 };
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
 
   return (
+    <>
     <header className="w-full px-6 py-4 bg-white shadow-md">
       <div className="flex items-center justify-between gap-4">
         {/* Logo */}
@@ -84,10 +104,10 @@ const Header = () => {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex w-full gap-6 mx-4 text-md">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/shop">Shop</NavLink>
-          <NavLink href="/">Men</NavLink>
-          <NavLink href="/">Women</NavLink>
-          <NavLink href="/">Kids</NavLink>
+          <NavLink href={{pathname: "/shop", query: {category: "All",type: "All"}}}>Shop</NavLink>
+          <NavLink href={{pathname: "/shop", query: {category: "All",type: "Men"}}}>Men</NavLink>
+          <NavLink href={{pathname: "/shop", query: {category: "All",type: "Women"}}}>Women</NavLink>
+          <NavLink href={{pathname: "/shop", query: {category: "All",type: "Kids"}}}>Kids</NavLink>
         </nav>
 
         {/* Always-visible Right Section */}
@@ -99,13 +119,13 @@ const Header = () => {
             <div className="hidden md:flex mr-3">
               <SearchBar />
             </div>
-            <NavIcon href="/" ariaLabel="Wishlist">
+            <NavIcon isLink={false} onClick={() => {setWishlistOpen(!wishlistOpen); setCartOpen(false)}} ariaLabel="Wishlist">
               <Heart />
             </NavIcon>
-            <NavIcon href="/" ariaLabel="Cart">
+            <NavIcon isLink={false} onClick={() => {setCartOpen(!cartOpen); setWishlistOpen(false)}} ariaLabel="Cart">
               <ShoppingBag />
             </NavIcon>
-            <NavIcon href="/profile" ariaLabel="Account">
+            <NavIcon isLink={true} href="/profile" ariaLabel="Account">
               <UserRound />
             </NavIcon>
           </div>
@@ -135,7 +155,10 @@ const Header = () => {
           </div>
         </div>
       )}
+    <CartSlidePanel open={cartOpen} />
+    <WishlistSlidePanel open={wishlistOpen} />
     </header>
+    </>
   );
 };
 

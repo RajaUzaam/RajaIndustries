@@ -10,7 +10,7 @@ const montserrat = Montserrat({
   subsets: ['latin']
 });
 
-const FooterLink = ({ href, children }: { href: string; children: string }) => (
+const FooterLink = ({ href, children }: { href: object | string; children: string }) => (
   <Link
     href={href}
     className={`${montserrat.className} text-sm text-gray-300 hover:text-white transition`}
@@ -101,10 +101,10 @@ const Footer = () => {
         <div>
           <h3 className={`${montserrat.className} font-semibold mb-2`}>Shop</h3>
           <div className="flex flex-col gap-1">
-            <FooterLink href="/">Men</FooterLink>
-            <FooterLink href="/">Women</FooterLink>
-            <FooterLink href="/">Kids</FooterLink>
-            <FooterLink href="/">All Products</FooterLink>
+            <FooterLink href={{pathname: "/shop", query: {category: "All",type: "Men"}}}>Men</FooterLink>
+            <FooterLink href={{pathname: "/shop", query: {category: "All",type: "Women"}}}>Women</FooterLink>
+            <FooterLink href={{pathname: "/shop", query: {category: "All",type: "Kids"}}}>Kids</FooterLink>
+            <FooterLink href={{pathname: "/shop", query: {category: "All",type: "All"}}}>All Products</FooterLink>
           </div>
         </div>
 

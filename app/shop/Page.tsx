@@ -1,18 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 const DUMMY_PRODUCTS = [
-  { id: 1, name: 'Nike Air Max 270', price: 150, category: 'Shoes', brand: 'Nike' },
-  { id: 2, name: 'Nike Tech Hoodie', price: 90, category: 'Clothing', brand: 'Nike' },
-  { id: 3, name: 'Adidas Ultra Boost', price: 160, category: 'Shoes', brand: 'Adidas' },
-  { id: 4, name: 'Nike Cap', price: 25, category: 'Accessories', brand: 'Nike' },
-  { id: 5, name: 'Adidas Sweatpants', price: 70, category: 'Clothing', brand: 'Adidas' },
+  { id: 1, name: 'Nike Air Max 270', price: 150, category: 'Shoes', type: 'Men' },
+  { id: 2, name: 'Nike Tech Hoodie', price: 90, category: 'Clothing', type: 'Women' },
+  { id: 3, name: 'Adidas Ultra Boost', price: 160, category: 'Shoes', type: 'Kids' },
+  { id: 4, name: 'Nike Cap', price: 25, category: 'Accessories', type: 'Men' },
+  { id: 5, name: 'Adidas Sweatpants', price: 70, category: 'Clothing', type: 'Men' },
 ];
 
 const categories = ['All', 'Shoes', 'Clothing', 'Accessories'];
-const brands = ['All', 'Nike', 'Adidas'];
+const types = ['All', 'Men', 'Women', 'Kids'];
 const priceRanges = [
   { label: 'All', min: 0, max: Infinity },
   { label: 'Under $50', min: 0, max: 50 },
@@ -21,20 +22,32 @@ const priceRanges = [
 ];
 
 export default function ShopPage() {
+  const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedBrand, setSelectedBrand] = useState('All');
+  const [selectedType, setSelectedType] = useState('All');
   const [selectedPrice, setSelectedPrice] = useState(priceRanges[0]);
+
+  useEffect(() => {
+    const urlCategory = searchParams.get("category");
+    const urlType = searchParams.get("type");
+    //const urlPrice: string | null= searchParams.get("priceRange");
+
+    if (urlCategory) setSelectedCategory(urlCategory);
+    if (urlType) setSelectedType(urlType);
+    //if (urlPrice) setSelectedPrice(Number(urlPrice));
+  }, [searchParams]);
 
   const filteredProducts = DUMMY_PRODUCTS.filter((product) => {
     const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
-    const matchesBrand = selectedBrand === 'All' || product.brand === selectedBrand;
+    const matchesType = selectedType === 'All' || product.type === selectedType;
     const matchesPrice =
       product.price >= selectedPrice.min && product.price <= selectedPrice.max;
-    return matchesCategory && matchesBrand && matchesPrice;
+    return matchesCategory && matchesType && matchesPrice;
   });
 
   return (
     <div className="flex flex-col md:flex-row max-w-7xl mx-auto px-4 py-8">
+      <title>Raja Industries - Shop</title>
       {/* Sidebar Filters */}
       <aside className="w-full md:w-1/4 mb-6 md:mb-0 md:mr-6">
         <div className="bg-white p-4 rounded-xl shadow-sm space-y-6">
@@ -56,16 +69,16 @@ export default function ShopPage() {
             </div>
           </div>
 
-          {/* Brand Filter */}
+          {/* Type Filter */}
           <div>
-            <h3 className="font-semibold mb-2">Brand</h3>
+            <h3 className="font-semibold mb-2">Type</h3>
             <div className="space-y-1">
-              {brands.map((b) => (
+              {types.map((b) => (
                 <button
                   key={b}
-                  onClick={() => setSelectedBrand(b)}
+                  onClick={() => setSelectedType(b)}
                   className={`block w-full text-left px-2 py-1 rounded-md ${
-                    selectedBrand === b ? 'bg-black text-white' : 'hover:bg-gray-100'
+                    selectedType === b ? 'bg-black text-white' : 'hover:bg-gray-100'
                   }`}
                 >
                   {b}

@@ -11,6 +11,7 @@ const montserrat = Montserrat({
 export default function Home() {
   return (
     <main className="w-full">
+      <title>Raja Industries - Home</title>
       {/* Hero Section */}
       <section className="w-full h-[80vh] bg-black text-white flex items-center justify-center relative overflow-hidden">
         {/*<Image
