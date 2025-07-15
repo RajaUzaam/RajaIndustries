@@ -25,7 +25,7 @@ const NavLink = ({ children, href }: { children: string; href: object | string }
 const SearchBar = () => {
   return (
     <div className="relative group flex items-center transition-all duration-500 ease-in-out">
-      <div className="flex items-center w-9 h-9 group-hover:w-64 focus-within:w-64 overflow-hidden bg-zinc-100 border border-zinc-300 rounded-full px-1.25 hover:px-2.5 py-1 shadow-sm group-hover:shadow-md transition-all duration-500 ease-in-out">
+      <div className="flex items-center w-[64rem] md:w-9 h-9 md:group-hover:w-64 focus-within:w-64 overflow-hidden bg-zinc-100 border border-zinc-300 rounded-full px-1.25 hover:px-2.5 py-1 shadow-sm group-hover:shadow-md transition-all duration-500 ease-in-out">
         <div className="flex items-center justify-center min-w-[1.5rem] min-h-[1.5rem]">
           <Search className="text-zinc-600" size={18} />
         </div>
