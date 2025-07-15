@@ -109,7 +109,7 @@ const Header = () => {
             <NavIcon isLink={true} href={"/cart"} ariaLabel="Cart">
               <ShoppingBag size={24} />
             </NavIcon>
-            <NavIcon isLink={true} href="/profile" ariaLabel="Account">
+            <NavIcon isLink={true} href={"/profile"} ariaLabel="Account">
               <UserRound size={24} />
             </NavIcon>
             <button
@@ -126,10 +126,10 @@ const Header = () => {
           <div className="lg:hidden mt-4 flex flex-col gap-4 px-4">
             <SearchBar />
             <NavLink href="/">Home</NavLink>
-            <NavLink href="/shop">Shop</NavLink>
-            <NavLink href="/">Men</NavLink>
-            <NavLink href="/">Women</NavLink>
-            <NavLink href="/">Kids</NavLink>
+            <NavLink href={{ pathname: "/shop", query: { category: "All", type: "All" } }}>Shop</NavLink>
+            <NavLink href={{ pathname: "/shop", query: { category: "All", type: "Men" } }}>Men</NavLink>
+            <NavLink href={{ pathname: "/shop", query: { category: "All", type: "Women" } }}>Women</NavLink>
+            <NavLink href={{ pathname: "/shop", query: { category: "All", type: "Kids" } }}>Kids</NavLink>
           </div>
         )}
       </header>

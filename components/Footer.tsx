@@ -72,7 +72,7 @@ const Footer = () => {
           <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'Men' } }}>Men</FooterLink>
           <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'Women' } }}>Women</FooterLink>
           <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'Kids' } }}>Kids</FooterLink>
-          <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'All' } }}>All Products</FooterLink>
+          <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'All' } }}>All</FooterLink>
         </div>
 
         {/* Company */}
