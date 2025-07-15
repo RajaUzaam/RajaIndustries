@@ -2,18 +2,23 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-//import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
-  subsets: ['latin']
+  subsets: ['latin'],
 });
 
-const FooterLink = ({ href, children }: { href: object | string; children: string }) => (
+const FooterLink = ({
+  href,
+  children,
+}: {
+  href: object | string;
+  children: string;
+}) => (
   <Link
     href={href}
-    className={`${montserrat.className} text-sm text-gray-300 hover:text-white transition`}
+    className={`${montserrat.className} text-sm text-gray-400 hover:text-white transition duration-200 ease-in-out`}
   >
     {children}
   </Link>
@@ -21,118 +26,76 @@ const FooterLink = ({ href, children }: { href: object | string; children: strin
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-black border-t border-gray-800 shadow-sm mt-16">
+    <footer className="w-full bg-black border-t border-zinc-600 shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 text-white">
 
-      {/* Newsletter Sign-Up */}
-      {/*<div className="bg-gray-800 w-full px-6 py-12 text-white text-center">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <h3 className={`${montserrat.className} font-semibold text-xl mb-2`}>
-            Subscribe to our Newsletter
-          </h3>
-          <p className={`${montserrat.className} text-sm text-gray-400 mb-6`}>
-            Be the first to know about new arrivals, exclusive drops, and special offers.
-          </p>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col sm:flex-row items-stretch w-full gap-3 max-w-xl"
-          >
-            <input
-              type="email"
-              required
-              placeholder="Enter your email"
-              className={`flex-1 px-4 py-2 rounded-md text-sm bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black ${montserrat.className}`}
-            />
-            <button
-              type="submit"
-              className="px-5 py-2 bg-white text-black rounded-md hover:bg-gray-200 transition text-sm font-medium"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>*/}
-
-
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-8 text-white">
-        {/* Logo Section */}
-        <div>
-          <div className="w-24 mb-4">
+        {/* Logo & Tagline */}
+        <div className="space-y-4">
+          <div className="w-24">
             <Image
               src="/logo.svg"
-              alt="Logo"
+              alt="Raja Industries Logo"
               width={90}
               height={90}
               className="w-full h-auto object-contain invert"
             />
           </div>
-          <p className={`${montserrat.className} text-sm text-gray-400`}>
-            Elevate your style with Raja Industries.
+          <p className={`${montserrat.className} text-sm text-gray-400 leading-relaxed`}>
+            Elevate your style with <span className="text-white font-semibold">Raja Industries</span>. Fashion with purpose, power & personality.
           </p>
-          
         </div>
-        
-        {/*"Visit Us"*/}
-        <div>
-          <h3 className={`${montserrat.className} font-semibold mb-2`}>Visit Us</h3>
-          <div className="flex flex-col gap-0">
-            <span className={`${montserrat.className} text-sm text-gray-300`}>Pakistan, Punjab, Lahore</span>
-            <span className={`${montserrat.className} text-sm text-gray-300`}>Contact us: 00-0000-00</span>
-            <span className={`${montserrat.className} text-sm text-gray-300`}>Email: business@business.com</span>
-            <div className="flex flex-row gap-2 mt-2 text-white">
-            <Link href="/" aria-label="Facebook" className='hover:scale-110 transition'>
-              <Image src={"/facebook.svg"} className='dark:invert' alt='facebook' width={30} height={30}/>
-            </Link>
-            <Link href="/" aria-label="Instagram" className='hover:scale-110 transition'>
-                <Image src={"/instagram.svg"} className='dark:invert' alt='facebook' width={30} height={30}/>
-            </Link>
-            <Link href="/" aria-label="Youtube" className='hover:scale-110 transition'>
-                <Image src={"/youtube.svg"} className='dark:invert' alt='youtube' width={30} height={30}/>
-            </Link>
-            <Link href="/" aria-label="TikTok" className='hover:scale-110 transition'>
-                <Image src={"/tiktok.svg"} className='dark:invert' alt='tiktok' width={30} height={30}/>
-            </Link>
-            <Link href="/" aria-label="Twitter" className='hover:scale-110 transition'>
-                <Image src={"/x.svg"} className='dark:invert' alt='facebook' width={25} height={25}/>
-            </Link>
-          </div>
-          </div>
-        </div>
-        {/* Shop Links */}
-        <div>
-          <h3 className={`${montserrat.className} font-semibold mb-2`}>Shop</h3>
-          <div className="flex flex-col gap-1">
-            <FooterLink href={{pathname: "/shop", query: {category: "All",type: "Men"}}}>Men</FooterLink>
-            <FooterLink href={{pathname: "/shop", query: {category: "All",type: "Women"}}}>Women</FooterLink>
-            <FooterLink href={{pathname: "/shop", query: {category: "All",type: "Kids"}}}>Kids</FooterLink>
-            <FooterLink href={{pathname: "/shop", query: {category: "All",type: "All"}}}>All Products</FooterLink>
+
+        {/* Visit Us */}
+        <div className="space-y-2">
+          <h3 className={`${montserrat.className} font-semibold text-white text-base mb-2`}>Visit Us</h3>
+          <p className="text-sm text-gray-400">Pakistan, Punjab, Lahore</p>
+          <p className="text-sm text-gray-400">Call: 00-0000-00</p>
+          <p className="text-sm text-gray-400">Email: business@business.com</p>
+          <div className="flex gap-3 mt-3">
+            {['facebook', 'instagram', 'youtube', 'tiktok', 'x'].map((platform) => (
+              <Link key={platform} href="/" className="hover:scale-110 transition-all duration-200">
+                <Image
+                  src={`/${platform}.svg`}
+                  alt={platform}
+                  width={24}
+                  height={24}
+                  className="invert opacity-80 hover:opacity-100"
+                />
+              </Link>
+            ))}
           </div>
         </div>
 
-        {/* Company Links */}
-        <div>
-          <h3 className={`${montserrat.className} font-semibold mb-2`}>Company</h3>
-          <div className="flex flex-col gap-1">
-            <FooterLink href="/">About Us</FooterLink>
-            <FooterLink href="/">Careers</FooterLink>
-            <FooterLink href="/">Press</FooterLink>
-            <FooterLink href="/">Contact</FooterLink>
-          </div>
+        {/* Shop */}
+        <div className="flex flex-col gap-2">
+          <h3 className={`${montserrat.className} font-semibold text-white text-base mb-2`}>Shop</h3>
+          <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'Men' } }}>Men</FooterLink>
+          <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'Women' } }}>Women</FooterLink>
+          <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'Kids' } }}>Kids</FooterLink>
+          <FooterLink href={{ pathname: '/shop', query: { category: 'All', type: 'All' } }}>All Products</FooterLink>
         </div>
 
-        {/* Support & Socials */}
-        <div>
-          <h3 className={`${montserrat.className} font-semibold mb-2`}>Support</h3>
-          <div className="flex flex-col gap-1">
-            <FooterLink href="/">FAQs</FooterLink>
-            <FooterLink href="/">Shipping</FooterLink>
-            <FooterLink href="/">Returns</FooterLink>
-            <FooterLink href="/">Privacy Policy</FooterLink>
-          </div>
+        {/* Company */}
+        <div className="flex flex-col gap-2">
+          <h3 className={`${montserrat.className} font-semibold text-white text-base mb-2`}>Company</h3>
+          <FooterLink href="/info/about-us">About Us</FooterLink>
+          <FooterLink href="/info/careers">Careers</FooterLink>
+          <FooterLink href="/info/press">Press</FooterLink>
+          <FooterLink href="/info/contact">Contact</FooterLink>
+        </div>
+
+        {/* Support */}
+        <div className="flex flex-col gap-2">
+          <h3 className={`${montserrat.className} font-semibold text-white text-base mb-2`}>Support</h3>
+          <FooterLink href="/info/faqs">FAQs</FooterLink>
+          <FooterLink href="/info/shipping">Shipping</FooterLink>
+          <FooterLink href="/info/returns">Returns</FooterLink>
+          <FooterLink href="/info/privacy-policy">Privacy Policy</FooterLink>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800 py-4 text-center text-sm text-gray-500">
+      <div className="border-t border-zinc-800 py-5 text-center text-sm text-zinc-500">
         © {new Date().getFullYear()} Raja Industries. All rights reserved.
       </div>
     </footer>

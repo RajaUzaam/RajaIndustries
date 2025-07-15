@@ -5,42 +5,36 @@ import { Heart, ShoppingBag, UserRound, Search, Menu } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import CartSlidePanel from './CartSlidePanel';
-import WishlistSlidePanel from './WishlistSlidePanel';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
-  subsets: ['latin']
+  subsets: ['latin'],
 });
 
-const NavLink = ({ children, href }: { children: string; href: object | string }) => {
-  return (
-    <Link
-      href={href}
-      className={`${montserrat.className}
-        relative inline
-        after:absolute after:left-0 
-        after:bottom-0 after:h-[2px] 
-        after:w-0 after:bg-black 
-        after:transition-all after:duration-300 
-        hover:after:w-full pt-1.5 text-[1.125rem]`}
-    >
-      {children}
-    </Link>
-  );
-};
+const NavLink = ({ children, href }: { children: string; href: object | string }) => (
+  <Link
+    href={href}
+    className={`${montserrat.className} relative text-[1.125rem] font-medium text-zinc-800 transition 
+    after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 
+    after:bg-black after:transition-all after:duration-300 hover:after:w-full`}
+  >
+    {children}
+  </Link>
+);
 
 const SearchBar = () => {
   return (
-    <div className="flex items-center w-[1rem] hover:w-[20rem] border-0 rounded-[7px] hover:border-2 border-gray-200 focus-within:w-[20rem] focus-within:ring-2 focus-within:ring-black transition-all duration-300">
-      <button className="border-gray-300 border-0 rounded-[7px] p-1 transition cursor-pointer">
-        <Search className="" />
-      </button>
-      <input
-        type="text"
-        placeholder="Search for products..."
-        className={`w-full bg-transparent outline-none text-sm placeholder-gray-500 ${montserrat.className}`}
-      />
+    <div className="relative group flex items-center transition-all duration-500 ease-in-out">
+      <div className="flex items-center w-9 h-9 group-hover:w-64 focus-within:w-64 overflow-hidden bg-zinc-100 border border-zinc-300 rounded-full px-1.25 hover:px-2.5 py-1 shadow-sm group-hover:shadow-md transition-all duration-500 ease-in-out">
+        <div className="flex items-center justify-center min-w-[1.5rem] min-h-[1.5rem]">
+          <Search className="text-zinc-600" size={18} />
+        </div>
+        <input
+          type="text"
+          placeholder="Search products..."
+          className={`ml-2 w-0 group-hover:w-full focus:w-full bg-transparent outline-none text-sm placeholder-gray-500 transition-all duration-500 ease-in-out ${montserrat.className}`}
+        />
+      </div>
     </div>
   );
 };
@@ -53,111 +47,92 @@ type NavIconProps = {
   children: React.ReactNode;
 };
 
-const NavIcon = ({
-  isLink = true,
-  href = '/',
-  onClick,
-  ariaLabel,
-  children
-}: NavIconProps) => {
-  return (
-    isLink && (
+const NavIcon = ({ isLink = true, href = '/', onClick, ariaLabel, children }: NavIconProps) => (
+  isLink ? (
     <Link
       href={href}
       aria-label={ariaLabel}
-      className="hover:scale-110 transition-all duration-300"
+      onClick={() => {
+        if (onClick) onClick();
+      }}
+      className="hover:scale-110 hover:text-black transition-all duration-300"
     >
       {children}
-    </Link>) || (
-      <button
+    </Link>
+  ) : (
+    <button
       onClick={onClick}
       aria-label={ariaLabel}
-      className="hover:scale-110 transition-all duration-300"
-      >
-        {children}
-      </button>
-    )
-  );
-};
+      className="hover:scale-110 hover:text-black transition-all duration-300"
+    >
+      {children}
+    </button>
+  )
+);
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
-  const [wishlistOpen, setWishlistOpen] = useState(false);
 
   return (
     <>
-    <header className="w-full px-6 py-4 bg-white shadow-md">
-      <div className="flex items-center justify-between gap-4">
-        {/* Logo */}
-        <Link href={"/"} className="w-[4rem] lg:w-[6rem]">
-          <Image
-            src={`/logo.svg`}
-            alt="R LOGO"
-            width={90}
-            height={90}
-            className="w-full h-auto object-contain"
-            priority
-          />
-        </Link>
+      <header className="w-full px-6 py-5 bg-white shadow-sm border-b border-zinc-200 sticky top-0 z-50">
+        <div className="flex items-center justify-between gap-6 max-w-7xl mx-auto">
+          {/* Logo */}
+          <Link href="/" className="w-[5rem] lg:w-[6rem]">
+            <Image
+              src="/logo.svg"
+              alt="R Logo"
+              width={90}
+              height={90}
+              className="w-full h-auto object-contain"
+              priority
+            />
+          </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex w-full gap-6 mx-4 text-md">
-          <NavLink href="/">Home</NavLink>
-          <NavLink href={{pathname: "/shop", query: {category: "All",type: "All"}}}>Shop</NavLink>
-          <NavLink href={{pathname: "/shop", query: {category: "All",type: "Men"}}}>Men</NavLink>
-          <NavLink href={{pathname: "/shop", query: {category: "All",type: "Women"}}}>Women</NavLink>
-          <NavLink href={{pathname: "/shop", query: {category: "All",type: "Kids"}}}>Kids</NavLink>
-        </nav>
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex w-full gap-8 mx-4">
+            <NavLink href="/">Home</NavLink>
+            <NavLink href={{ pathname: "/shop", query: { category: "All", type: "All" } }}>Shop</NavLink>
+            <NavLink href={{ pathname: "/shop", query: { category: "All", type: "Men" } }}>Men</NavLink>
+            <NavLink href={{ pathname: "/shop", query: { category: "All", type: "Women" } }}>Women</NavLink>
+            <NavLink href={{ pathname: "/shop", query: { category: "All", type: "Kids" } }}>Kids</NavLink>
+          </nav>
 
-        {/* Always-visible Right Section */}
-        <div className="flex items-center gap-3">
-          {/* SearchBar (hidden on mobile) */}
-
-          {/* Icons (always visible) */}
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex mr-3">
+          {/* Right Icons & Search */}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex">
               <SearchBar />
             </div>
-            <NavIcon isLink={false} onClick={() => {setWishlistOpen(!wishlistOpen); setCartOpen(false)}} ariaLabel="Wishlist">
-              <Heart />
+            <NavIcon isLink={true} href={"/wishlist"} ariaLabel="Wishlist">
+              <Heart size={24} />
             </NavIcon>
-            <NavIcon isLink={false} onClick={() => {setCartOpen(!cartOpen); setWishlistOpen(false)}} ariaLabel="Cart">
-              <ShoppingBag />
+            <NavIcon isLink={true} href={"/cart"} ariaLabel="Cart">
+              <ShoppingBag size={24} />
             </NavIcon>
             <NavIcon isLink={true} href="/profile" ariaLabel="Account">
-              <UserRound />
+              <UserRound size={24} />
             </NavIcon>
+            <button
+              className="lg:hidden p-2 border rounded-md bg-white text-black hover:bg-black hover:text-white transition"
+              onClick={() => setMenuOpen((prev) => !prev)}
+            >
+              <Menu size={22} />
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 border rounded cursor-pointer bg-transparent text-black focus:bg-black focus:text-white"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <Menu />
-          </button>
         </div>
-      </div>
 
-      {/* Mobile Nav (links only) */}
-      {menuOpen && (
-        <div className="flex flex-col gap-4 mt-4 lg:hidden">
-          {/* Mobile Search */}
-          <div className='flex md:hidden'><SearchBar /></div>
-          {/* Navigation Links */}
-          <div className="flex flex-col gap-2">
+        {/* Mobile Nav */}
+        {menuOpen && (
+          <div className="lg:hidden mt-4 flex flex-col gap-4 px-4">
+            <SearchBar />
             <NavLink href="/">Home</NavLink>
             <NavLink href="/shop">Shop</NavLink>
             <NavLink href="/">Men</NavLink>
             <NavLink href="/">Women</NavLink>
             <NavLink href="/">Kids</NavLink>
           </div>
-        </div>
-      )}
-    <CartSlidePanel open={cartOpen} />
-    <WishlistSlidePanel open={wishlistOpen} />
-    </header>
+        )}
+      </header>
     </>
   );
 };
