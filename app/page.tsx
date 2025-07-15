@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { Montserrat } from 'next/font/google';
 import { motion, Variants } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -23,6 +24,13 @@ const fadeUp: Variants = {
 };
 
 export default function Home() {
+  const sections = [
+    { title: 'Spotlight Collection', count: 6, price: '$129.99', label: 'Signature Piece' },
+    { title: 'New Arrivals', count: 8, price: '$89.99', label: 'Drop' },
+  ];
+
+  const scrollRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   return (
     <main className="w-full bg-[#f9f9f9] text-zinc-900 font-sans">
       <title>Raja Industries - Home</title>
@@ -99,13 +107,10 @@ export default function Home() {
       </section>
 
       {/* Sections */}
-      {[
-        { title: 'Spotlight Collection', count: 6, price: '$129.99', label: 'Signature Piece' },
-        { title: 'New Arrivals', count: 8, price: '$89.99', label: 'Drop' },
-      ].map((section, sIdx) => (
+      {sections.map((section, sIdx) => (
         <section
           key={sIdx}
-          className="py-20 px-6 bg-white border-t border-zinc-200"
+          className="py-20 px-6 bg-white border-t border-zinc-200 relative"
         >
           <motion.h2
             className={`text-3xl font-bold text-center mb-12 ${montserrat.className}`}
@@ -117,11 +122,28 @@ export default function Home() {
             {section.title}
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <button
+            onClick={() => scrollRefs.current[sIdx]?.scrollBy({ left: -300, behavior: 'smooth' })}
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow p-2 hover:bg-zinc-100"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button
+            onClick={() => scrollRefs.current[sIdx]?.scrollBy({ left: 300, behavior: 'smooth' })}
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow p-2 hover:bg-zinc-100"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          <div
+            ref={(el) => {scrollRefs.current[sIdx] = el;}}
+            className="flex gap-6 overflow-x-auto px-2 scroll-smooth snap-x snap-mandatory scrollbar-hide max-w-6xl mx-auto"
+          >
             {[...Array(section.count)].map((_, i) => (
               <motion.div
                 key={i}
-                className="bg-white rounded-xl p-4 border-[3px] border-zinc-300 shadow-sm hover:scale-105 transition-transform duration-300"
+                className="min-w-[250px] snap-start bg-white rounded-xl p-4 border-[3px] border-zinc-300 shadow-sm hover:scale-105 transition-transform duration-300"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="show"
